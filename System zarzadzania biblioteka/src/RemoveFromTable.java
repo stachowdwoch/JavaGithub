@@ -26,12 +26,14 @@ public class RemoveFromTable extends javax.swing.JFrame {
     
     /**
      * Creates new form RemoveFromTable
-     * @param tableName
+     * @param tableName 
+     * nazwa tabeli, z której usuwany będzie rekord
      * @throws java.sql.SQLException
      */
     public RemoveFromTable(String tableName) throws SQLException {
         super("RemoveFromTable");
         initComponents();
+        TF_id.setVisible(false);
         NameOfTable.setVisible(false);
         NameOfIDRow.setVisible(false);
         conn = DatabaseConnection.connectDB();
@@ -161,43 +163,42 @@ public class RemoveFromTable extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(NameOfTable, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NameOfIDRow, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(377, 377, 377)
+                        .addComponent(NameOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NameOfIDRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(359, 359, 359)
                         .addComponent(jButton1)
-                        .addContainerGap(404, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TF_id))))
-            .addComponent(jScrollPane1)
+                        .addComponent(TF_id)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(NameOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(NameOfIDRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NameOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NameOfIDRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 26, Short.MAX_VALUE)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(TF_id))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addContainerGap())))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(TF_id))
+                .addContainerGap())
         );
 
         pack();
@@ -263,6 +264,12 @@ public class RemoveFromTable extends javax.swing.JFrame {
                 AdminFrame.TF_id.setText(RemoveFromTable.TF_id.getText());
                 kl.setVisible(true);
                 setVisible(false);
+                break;
+            case "WYPOZYCZENIA":
+                Borrows br =new Borrows();
+                Borrows.TF_user.setText(RemoveFromTable.TF_id.getText());
+                br.setVisible(true);
+                setVisible(false);
                 break; 
             case "PRACOWNICY":
                 AdminFrame kl1 =new AdminFrame();
@@ -272,7 +279,7 @@ public class RemoveFromTable extends javax.swing.JFrame {
                 break;
             case "UZYTKOWNICY_BAZY":
                 DatabaseUsers ub = new DatabaseUsers();
-                DatabaseUsers.TF_id.setText(this.TF_id.getText());
+                DatabaseUsers.TF_id.setText(RemoveFromTable.TF_id.getText());
                 ub.setVisible(true);
                 setVisible(false);
                 break;

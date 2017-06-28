@@ -13,13 +13,11 @@ import java.util.regex.*;
  */
 public class RegexChecker {
     public static boolean regexChecker(String theRegex, String checkStr){
-        Pattern checkRegex = Pattern.compile(theRegex);
+        Pattern checkRegex;
+        checkRegex = Pattern.compile(theRegex, Pattern.CASE_INSENSITIVE);
         
         Matcher regexMatcher = checkRegex.matcher(checkStr);
         
-        if(regexMatcher.find())
-            return true;
-        return false;
+        return regexMatcher.find();
     }
-    
 }

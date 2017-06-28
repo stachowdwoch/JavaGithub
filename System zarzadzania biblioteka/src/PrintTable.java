@@ -18,12 +18,12 @@ import net.proteanit.sql.DbUtils;
  */
 public class PrintTable extends javax.swing.JFrame {
     Connection conn;
-    ResultSet res, res_k;
-    PreparedStatement pst, pst_k;
+    ResultSet res;
+    PreparedStatement pst;
     
     /**
      * Creates new form PrintTable
-     * @param tableName
+     * @param tableName nazwa wyświetlanej tabeli
      * @throws java.sql.SQLException
      */
     public PrintTable(String tableName) throws SQLException {
@@ -199,8 +199,8 @@ public class PrintTable extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -280,34 +280,6 @@ public class PrintTable extends javax.swing.JFrame {
                 UserFrame.TF_user.setText(this.TF_id.getText());
                 ab.setVisible(true);
                 setVisible(false);
-                break;
-            case "KLIENCI":
-                String id = this.TF_id.getText();
-                String sql_k = "SELECT * FROM pracownicy WHERE id_pracownik ="+id;
-                try{
-                    pst_k = conn.prepareStatement(sql_k);
-                    
-                    res_k = pst_k.executeQuery();
-                    if(res.next()){
-                        String stanowisko = res.getString("stanowisko");
-                        System.out.println(stanowisko);
-                        if("administrator".equals(stanowisko)){
-                            AdminFrame kb = new AdminFrame();
-                            AdminFrame.TF_id.setText(this.TF_id.getText());
-                            kb.setVisible(true);
-                            setVisible(false);
-                        }else{
-                            UserFrame kb = new UserFrame();
-                            UserFrame.TF_user.setText(this.TF_id.getText());
-                            kb.setVisible(true);
-                            setVisible(false);
-                        }
-                        
-                    }
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e);
-                }
-                
                 break;
             case "SCHEMA_HISTORY":
                 AdminFrame hb = new AdminFrame();

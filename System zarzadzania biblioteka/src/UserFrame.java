@@ -334,14 +334,14 @@ public class UserFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setVisible(false);
+        PrintClientUser ob = null;
         try {
-            PrintTable ob = new PrintTable("KLIENCI");
-            PrintTable.TF_id.setText(this.TF_user.getText());
-            ob.setVisible(true);
+            ob = new PrintClientUser();
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+            PrintClientUser.TF_id.setText(this.TF_user.getText());
+            ob.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

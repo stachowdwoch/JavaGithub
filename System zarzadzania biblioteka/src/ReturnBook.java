@@ -1,10 +1,12 @@
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,21 +16,39 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Bogdan
+ * @author Admin
  */
 public class ReturnBook extends javax.swing.JFrame {
     Connection conn;
     ResultSet res;
     PreparedStatement pst;
-    CallableStatement cst;
     /**
      * Creates new form ReturnBook
      */
     public ReturnBook() {
-        super("Return Book");
+        super("ReturnBook");
         initComponents();
+        NameOfTable.setVisible(false);
+        NameOfIDRow.setVisible(false);
+        TF_id.setVisible(false);
         conn = DatabaseConnection.connectDB();
-        TF_user.setVisible(false);
+        NameOfTable.setText("WYPOZYCZENIA");
+        updateTable("SELECT * FROM " + NameOfTable.getText());
+    }
+    
+    private void updateTable(String sql) {
+        try{
+            pst = conn.prepareStatement(sql);
+            res = pst.executeQuery();
+            
+            ResultSetMetaData meta = res.getMetaData();
+            
+            NameOfIDRow.setText(meta.getColumnName(1));
+            
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -40,12 +60,16 @@ public class ReturnBook extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        TF_id = new javax.swing.JLabel();
+        NameOfTable = new javax.swing.JTextField();
+        NameOfIDRow = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        TF_user = new javax.swing.JLabel();
+        idClientField = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -54,65 +78,45 @@ public class ReturnBook extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Zwrot książki");
-        setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
+        TF_id.setText("ID");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Yes.png"))); // NOI18N
-        jButton1.setText("Wykonaj");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Back.png"))); // NOI18N
+        jButton4.setText("Wstecz");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Oddaj książkę");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Back.png"))); // NOI18N
-        jButton2.setText("Wstecz");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setText("Podaj ID klienta");
+
+        jButton2.setText("Filtruj");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("ID wypożyczenia");
-
-        TF_user.setText("ID");
-        TF_user.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TF_user)
-                .addGap(21, 21, 21)
-                .addComponent(jButton1)
-                .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(232, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(169, 169, 169)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(246, 246, 246))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(212, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(163, 163, 163)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(TF_user))
-                .addGap(35, 35, 35))
-        );
 
         jMenu1.setText("Plik");
 
@@ -155,16 +159,47 @@ public class ReturnBook extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TF_id))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(NameOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NameOfIDRow, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(idClientField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NameOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NameOfIDRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(idClientField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TF_id, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton4)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
 
@@ -190,35 +225,48 @@ public class ReturnBook extends javax.swing.JFrame {
             + "Autorzy:\nJanuszek Hubert\nJagodziński Maksymilian\nGrupa: 2ID12A\n2017");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Borrows br = new Borrows();
+        Borrows.TF_user.setText(this.TF_id.getText());
+        br.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String sql = "DELETE FROM WYPOZYCZENIA WHERE ID_WYPOZYCZENIE = ?";
-        try{
-            cst = conn.prepareCall(sql);
-            cst.setString(1, String.valueOf(jTextField1.getText()));
-            cst.execute();
-            JOptionPane.showMessageDialog(null, "Pomyślnie oddano książkę");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }finally {
-            try{
-                cst.close();
-                setVisible(false);
-                UserFrame ob = new UserFrame();
-                UserFrame.TF_user.setText(ReturnBook.TF_user.getText());
-                ob.setVisible(true);
-            }catch (SQLException e) {
+        DefaultTableModel tabmodel = (DefaultTableModel) jTable1.getModel();
+        String sql;
+        if (jTable1.getSelectedRow() == -1) {
+            if (jTable1.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Tabela jest pusta");
+            }
+        } else {
+            int id = jTable1.getSelectedRow();
+            sql = "DELETE FROM " + NameOfTable.getText() + " WHERE " + NameOfIDRow.getText() + " = " + tabmodel.getValueAt(id, 0);
+            try {
+                int p = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz oddać książkę?");
+                if(p == 0){
+                    pst = conn.prepareStatement(sql);
+                    pst.execute();
+                    tabmodel.removeRow(id);
+                    pst.close();
+                }
+            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        Borrows ob = new Borrows();
-        Borrows.TF_user.setText(ReturnBook.TF_user.getText());
-        ob.setVisible(true);
+        String idKlienta = idClientField.getText();
+        
+        if(idKlienta.isEmpty()) JOptionPane.showMessageDialog(null, "Wymagane wypełnienie pola."); else {
+            RegexChecker check = new RegexChecker();
+            
+            if(!check.regexChecker("^(0|[1-9][0-9]*)$",idKlienta)) JOptionPane.showMessageDialog(null, "ID klienta może być tylko liczbą całkowitą."); else {
+                updateTable("SELECT * FROM " + NameOfTable.getText() + " WHERE ID_KLIENT = " + idKlienta);
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -257,9 +305,13 @@ public class ReturnBook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel TF_user;
+    private javax.swing.JTextField NameOfIDRow;
+    private javax.swing.JTextField NameOfTable;
+    public static javax.swing.JLabel TF_id;
+    private javax.swing.JTextField idClientField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -267,7 +319,9 @@ public class ReturnBook extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -240,7 +240,7 @@ public class AddRandomBorrow extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         Borrows ob = new Borrows();
-        Borrows.TF_user.setText(AddBorrow.TF_user.getText());
+        Borrows.TF_user.setText(AddRandomBorrow.TF_user.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

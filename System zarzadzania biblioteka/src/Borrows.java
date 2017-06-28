@@ -288,8 +288,9 @@ public class Borrows extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        ReturnBook ob = new ReturnBook();
-        ReturnBook.TF_user.setText(Borrows.TF_user.getText());
+        ReturnBook ob;
+        ob = new ReturnBook();
+        ReturnBook.TF_id.setText(this.TF_user.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

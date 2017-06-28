@@ -14,18 +14,6 @@ import javax.swing.JOptionPane;
  *
  * @author Bogdan
  */
-class ForRunnable implements Runnable{
-
-    @Override
-    public void run() {
-        try{
-            Thread.sleep(2000);
-        }catch(InterruptedException e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-    
-}
 
 public class Books extends javax.swing.JFrame{
 
@@ -303,13 +291,10 @@ public class Books extends javax.swing.JFrame{
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        ForRunnable rn = new ForRunnable();
-        
+        // TODO add your handling code here:        
         NewBook ob = new NewBook();
         NewBook.TF_user.setText(Books.TF_user.getText());
         ob.setVisible(true);
-        rn.run();
         setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

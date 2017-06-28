@@ -22,7 +22,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
     public DatabaseUsers() {
         super("Database Users");
         initComponents();
-        //TF_id.setVisible(false);
+        TF_id.setVisible(false);
     }
 
     /**

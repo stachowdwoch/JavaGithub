@@ -266,7 +266,7 @@ PreparedStatement pst, pst_diag;
                     gatunek = jTextField3.getText(),
                     ilosc = jTextField6.getText(),
                     tytul = jTextField1.getText();
-            if(check.regexChecker("\\d+", rok_wyd) && check.regexChecker("\\d+", ilosc) && check.regexChecker("[a-zA-Z]+", gatunek)){
+            if(check.regexChecker("^(0|[1-9][0-9]*)$", rok_wyd) && check.regexChecker("^(0|[1-9][0-9]*)$", ilosc) && check.regexChecker("^[a-zA-Z ]*$", gatunek)){
             pst = conn.prepareStatement(sql);
             pst.setString(1, tytul);
             pst.setString(2, rok_wyd);
@@ -299,7 +299,7 @@ PreparedStatement pst, pst_diag;
             pst_diag.close();
             pst.close();
             } else 
-                JOptionPane.showMessageDialog(null, "Nie wszystkie pola zostawy wypelnione prawidlowo!");
+                JOptionPane.showMessageDialog(null, "Nie wszystkie pola zostały wypelnione prawidlowo!");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -340,10 +340,8 @@ PreparedStatement pst, pst_diag;
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewBook().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NewBook().setVisible(true);
         });
     }
 

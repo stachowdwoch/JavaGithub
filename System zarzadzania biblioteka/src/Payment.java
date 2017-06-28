@@ -207,12 +207,18 @@ public class Payment extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String sql = "{call uiszczenie_oplaty(?,?)}";
+        RegexChecker check = new RegexChecker();
         try{
+            String id = jTextField1.getText(),
+                    oplata = jTextField2.getText();
+            if(check.regexChecker("\\d+", id) && check.regexChecker("\\d+", oplata)){
             cst = conn.prepareCall(sql);
-            cst.setInt(1, Integer.parseInt(jTextField1.getText()));
-            cst.setFloat(2, Float.parseFloat(jTextField2.getText()));
+            cst.setInt(1, Integer.parseInt(id));
+            cst.setFloat(2, Float.parseFloat(oplata));
             cst.execute();
             JOptionPane.showMessageDialog(null, "Pomyślnie wykonano procedurę");
+            } else 
+                JOptionPane.showMessageDialog(null, "Nie wszystkie pola zostały wypelnione prawidlowo!");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }finally {

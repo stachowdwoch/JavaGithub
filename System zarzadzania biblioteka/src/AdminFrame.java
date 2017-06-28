@@ -364,10 +364,10 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         setVisible(false);
-        PrintTable ob = null;
+        PrintClientAdmin ob = null;
         try {
-            ob = new PrintTable("KLIENCI");
-            ob.TF_id.setText(AdminFrame.TF_id.getText());
+            ob = new PrintClientAdmin();
+            PrintClientAdmin.TF_id.setText(AdminFrame.TF_id.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -415,6 +415,7 @@ public class AdminFrame extends javax.swing.JFrame {
         RemoveFromTable ob = null;
         try {
             ob = new RemoveFromTable("PRACOWNICY");
+            ob.TF_id.setText(AdminFrame.TF_id.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

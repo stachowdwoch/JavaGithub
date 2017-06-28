@@ -1,4 +1,5 @@
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,7 +76,7 @@ public class NewClient extends javax.swing.JFrame {
 
         jLabel2.setText("Nazwisko");
 
-        jLabel4.setText("Numer telefonu");
+        jLabel4.setText("Numer telefonu [aaa-aaa-aaa]");
 
         jLabel1.setText("Imię");
 
@@ -100,13 +101,13 @@ public class NewClient extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(307, Short.MAX_VALUE)
+                        .addContainerGap(298, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addGap(70, 70, 70)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(TF_admin)
@@ -139,7 +140,6 @@ public class NewClient extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,7 +147,7 @@ public class NewClient extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton2)
                                     .addComponent(jButton1)
@@ -234,32 +234,37 @@ public class NewClient extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String sql = "INSERT INTO KLIENCI VALUES (klienci_seq.nextval, ?, ?, ?, ?, 5)";
-        try{
-            RegexChecker check = new RegexChecker();
-            String imie_k = jTextField1.getText(),
-            nazwisko_k = jTextField2.getText();
-            if(check.regexChecker("[a-zA-Z]+", imie_k) && check.regexChecker("[a-zA-Z]+", nazwisko_k)){
-                pst = conn.prepareStatement(sql);
-                pst.setString(1, imie_k);
-                pst.setString(2, nazwisko_k);
-                pst.setString(3, jTextField3.getText());
-                pst.setString(4, jTextField4.getText());
-                pst.execute();
-                JOptionPane.showMessageDialog(null, "Pomyślnie dodano nowego klienta.");
-                try{
-                    pst.close();
-                    setVisible(false);
-                    AdminFrame ob = new AdminFrame();
-                    AdminFrame.TF_id.setText(this.TF_admin.getText());
-                    ob.setVisible(true);
-                }catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, e);
-                }
-            }else
-            JOptionPane.showMessageDialog(null, "Nie wszystkie pola zostały wypełnione prawidłowo!");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+        RegexChecker check = new RegexChecker();
+        String imieK = jTextField1.getText(),
+        nazwiskoK = jTextField2.getText(),
+        emailK = jTextField3.getText(),
+        nrTel =  jTextField4.getText();    
+        if(!check.regexChecker("^[a-zA-Z ]*$", imieK))JOptionPane.showMessageDialog(null, "Nieprawidłowe imię!"); else {
+            if(!check.regexChecker("^[a-zA-Z ]*$", nazwiskoK))JOptionPane.showMessageDialog(null, "Nieprawidłowe nazwisko!!"); else{ 
+                if(!check.regexChecker("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", emailK))JOptionPane.showMessageDialog(null, "Nieprawidłowy adres email!");else {
+                    if(nrTel.length() != 11) JOptionPane.showMessageDialog(null, "Nieprawidłowy numer telefonu!"); else {
+                        try{
+                            pst = conn.prepareStatement(sql);
+                            pst.setString(1, imieK);
+                            pst.setString(2, nazwiskoK);
+                            pst.setString(3, emailK);
+                            pst.setString(4, nrTel);
+                            pst.execute();
+                            JOptionPane.showMessageDialog(null, "Pomyślnie dodano nowego klienta.");
+                            pst.close();
+                            
+                            
+                            setVisible(false);
+                            AdminFrame ob = new AdminFrame();
+                            AdminFrame.TF_id.setText(this.TF_admin.getText());
+                            ob.setVisible(true);
+                        }catch(HeadlessException | SQLException e){
+                                JOptionPane.showMessageDialog(null, e);
+                        }
+                    }                                 
+                }                            
+            }              
+        }                     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -298,10 +303,8 @@ public class NewClient extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewClient().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NewClient().setVisible(true);
         });
     }
 

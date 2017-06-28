@@ -1,7 +1,9 @@
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /*
@@ -224,41 +226,40 @@ public class NewDatabaseUser extends javax.swing.JFrame {
         String sql1 = "SELECT count(*) FROM PRACOWNICY WHERE "
                 + "(STANOWISKO = 'bibliotekarz' OR STANOWISKO = 'administrator') "
                 + "AND ID_PRACOWNIK = ?";
-        try{
+        String idPracownika = jTextField1.getText();
+        RegexChecker check = new RegexChecker();
+        if(!check.regexChecker("\\d+", idPracownika)) JOptionPane.showMessageDialog(null, "Id pracownika jest niepoprawne!"); else {
             try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, jTextField1.getText());
-            pst.setString(2, jTextField2.getText());
-            pst.setString(3, jPasswordField1.getText());
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Błąd sql1 "+e);
-            }
-            
-            pst_diag = conn.prepareStatement(sql1);
-            pst_diag.setString(1, jTextField1.getText());
-            res = pst_diag.executeQuery();
-            if(res.next()){
-                int counter = res.getInt(1);
-                if(counter == 1){
-                    pst.execute();
-                    JOptionPane.showMessageDialog(null, "Nadano uprawnienia");
-                    try{
-                        setVisible(false);
-                        AdminFrame ob = new AdminFrame();
-                        AdminFrame.TF_id.setText(this.TF_admin.getText());
-                        ob.setVisible(true);
-                    }catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e);
-                    }
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, idPracownika);
+                pst.setString(2, jTextField2.getText());
+                pst.setString(3, jPasswordField1.getText());
+
+                pst_diag = conn.prepareStatement(sql1);
+                pst_diag.setString(1, jTextField1.getText());
+                res = pst_diag.executeQuery();
+                if(res.next()){
+                    int counter = res.getInt(1);
+                    if(counter == 1){
+                        pst.execute();
+                        JOptionPane.showMessageDialog(null, "Nadano uprawnienia");
+                        try{
+                            setVisible(false);
+                            AdminFrame ob = new AdminFrame();
+                            AdminFrame.TF_id.setText(this.TF_admin.getText());
+                            ob.setVisible(true);
+                        }catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                        }
+                    }else
+                        JOptionPane.showMessageDialog(null, "Temu pracownikowi nie można nadać uprawnień!");
                 }else
-                    JOptionPane.showMessageDialog(null, "Temu pracownikowi nie można nadać uprawnień!");
-            }else
-                JOptionPane.showMessageDialog(null, "Podano nieprawidłowe dane");
-            
-            pst_diag.close();
-            pst.close();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+                    JOptionPane.showMessageDialog(null, "Podano nieprawidłowe dane");
+                pst_diag.close();
+                pst.close();
+            }catch(HeadlessException | SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

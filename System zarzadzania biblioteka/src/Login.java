@@ -268,6 +268,8 @@ ResultSetMetaData rsmd;
                 
             }else {
                 JOptionPane.showMessageDialog(null, "Podano nieprawidłowy login lub hasło.");
+                jTextField1.setText("");
+                jPasswordField1.setText("");
             }
             } catch (HeadlessException | SQLException e){
                 JOptionPane.showMessageDialog(null, e);
