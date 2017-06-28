@@ -18,6 +18,8 @@ public class Login extends javax.swing.JFrame {
 Connection conn;
 ResultSet res;
 PreparedStatement pst;
+String id_user;
+ResultSetMetaData rsmd;
 
     /**
      * Creates new form Login
@@ -108,7 +110,7 @@ PreparedStatement pst;
 
         jMenu1.setText("Plik");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Turn off.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Turn off.png"))); // NOI18N
         jMenuItem1.setText("Zamknij program");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +123,7 @@ PreparedStatement pst;
 
         jMenu2.setText("Pomoc");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/About.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/About.png"))); // NOI18N
         jMenuItem3.setText(" O programie");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,23 +167,25 @@ PreparedStatement pst;
             
             res = pst.executeQuery();
             if(res.next()){
-                String id_pracownika = res.getString(1);
-                sql = "select * from PRACOWNICY where id_pracownik = " + id_pracownika + " and stanowisko = 'bibliotekarz'";
+                id_user = res.getString(1);
+                sql = "select * from PRACOWNICY where id_pracownik = " + id_user + " and stanowisko = 'bibliotekarz'";
                 pst = conn.prepareStatement(sql);
                 res = pst.executeQuery();
                 if(res.next()){
                     setVisible(false);
                     LoadingUser ob = new LoadingUser();
+                    LoadingUser.TF_value.setText(this.id_user);
                     ob.setUpLoading();
                     ob.setVisible(true);
                 } 
-                String sql1 = "select * from PRACOWNICY where id_pracownik = " + id_pracownika + " and stanowisko = 'administrator'";
+                String sql1 = "select * from PRACOWNICY where id_pracownik = " + id_user + " and stanowisko = 'administrator'";
                 
                 pst = conn.prepareStatement(sql1);
                 res = pst.executeQuery();
                 if(res.next()){
                     setVisible(false);
                     LoadingAdmin ob = new LoadingAdmin();
+                    LoadingAdmin.TF_value.setText(this.id_user);
                     ob.setUpLoading();
                     ob.setVisible(true);
                 } 
