@@ -45,7 +45,7 @@ public class LoadingUser extends javax.swing.JFrame implements Runnable{
                     i=201;
                     setVisible(false);
                     UserFrame ob = new UserFrame();
-                    UserFrame.TF_user.setText(LoadingUser.TF_value.getText());
+                    UserFrame.TF_user.setText(LoadingUser.TF_id.getText());
                     ob.setVisible(true);
                 }Thread.sleep(50);
             }
@@ -67,7 +67,7 @@ public class LoadingUser extends javax.swing.JFrame implements Runnable{
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        TF_value = new javax.swing.JLabel();
+        TF_id = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
 
@@ -83,7 +83,7 @@ public class LoadingUser extends javax.swing.JFrame implements Runnable{
         jLabel1.setForeground(new java.awt.Color(51, 102, 255));
         jLabel1.setText("System zarządzania biblioteką");
 
-        TF_value.setText("ID");
+        TF_id.setText("ID");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loading.gif"))); // NOI18N
 
@@ -101,7 +101,7 @@ public class LoadingUser extends javax.swing.JFrame implements Runnable{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TF_value))
+                        .addComponent(TF_id))
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -122,7 +122,7 @@ public class LoadingUser extends javax.swing.JFrame implements Runnable{
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TF_value))
+                    .addComponent(TF_id))
                 .addGap(50, 50, 50)
                 .addComponent(jLabel4)
                 .addContainerGap(83, Short.MAX_VALUE))
@@ -186,7 +186,7 @@ public class LoadingUser extends javax.swing.JFrame implements Runnable{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel TF_value;
+    public static javax.swing.JLabel TF_id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

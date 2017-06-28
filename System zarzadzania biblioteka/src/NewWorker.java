@@ -238,7 +238,7 @@ public class NewWorker extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         AdminFrame ob = new AdminFrame();
-        AdminFrame.TF_admin.setText(NewWorker.TF_admin.getText());
+        AdminFrame.TF_id.setText(NewWorker.TF_admin.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -262,7 +262,7 @@ public class NewWorker extends javax.swing.JFrame {
                     pst.close();
                     setVisible(false);
                     AdminFrame ob = new AdminFrame();
-                    AdminFrame.TF_admin.setText(NewWorker.TF_admin.getText());
+                    AdminFrame.TF_id.setText(NewWorker.TF_admin.getText());
                     ob.setVisible(true);
                 }catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, e);

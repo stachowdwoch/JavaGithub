@@ -45,6 +45,11 @@ public class RemoveFromTable extends javax.swing.JFrame {
     
     private void updateTable(String tableName) throws SQLException{
         String sql = "SELECT * FROM " + tableName;
+        if(tableName == "UZYTKOWNICY_BAZY"){
+        sql = "SELECT ub.id_pracownik, ub.login, pr.imie_pracownik, pr.nazwisko_pracownik, pr.stanowisko FROM UZYTKOWNICY_BAZY ub, PRACOWNICY pr\n" +
+                        "WHERE ub.id_pracownik = pr.id_pracownik";
+        }else
+            sql = "SELECT * FROM " + tableName;
         try{
             pst = conn.prepareStatement(sql);
             res = pst.executeQuery();
@@ -68,12 +73,13 @@ public class RemoveFromTable extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         NameOfTable = new javax.swing.JTextField();
         NameOfIDRow = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        TF_id = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -82,21 +88,7 @@ public class RemoveFromTable extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setResizable(false);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Usuń zaznaczony");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +104,21 @@ public class RemoveFromTable extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        TF_id.setText("ID");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         jMenu1.setText("Plik");
 
@@ -155,33 +162,42 @@ public class RemoveFromTable extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 912, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(NameOfTable, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NameOfIDRow, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(377, 377, 377)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addContainerGap(404, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(TF_id))))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(NameOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(NameOfIDRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(NameOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NameOfIDRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(TF_id))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addContainerGap())))
         );
 
         pack();
@@ -209,32 +225,62 @@ public class RemoveFromTable extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel tabmodel = (DefaultTableModel) jTable1.getModel();
         String sql;
-        try{
-            int[] tabWithRowIdexes = new int[jTable1.getRowCount()];
-            
-            tabWithRowIdexes = jTable1.getSelectedRows();
-
-            int size = tabWithRowIdexes.length;
-            
-            while(size > 0){
-                sql = "DELETE FROM " + NameOfTable.getText() + " WHERE " + NameOfIDRow.getText() + " = " + tabmodel.getValueAt(size-1, 0);
-                JOptionPane.showMessageDialog(null, sql);
+        if (jTable1.getSelectedRow() == -1) {
+            if (jTable1.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Tabela jest pusta");
+            }
+        } else {
+            int id = jTable1.getSelectedRow();
+            sql = "DELETE FROM " + NameOfTable.getText() + " WHERE " + NameOfIDRow.getText() + " = " + tabmodel.getValueAt(id, 0);
+            try {
+                //JOptionPane.showMessageDialog(null, sql);
                 pst = conn.prepareStatement(sql);
                 pst.execute();
-                tabmodel.removeRow(tabWithRowIdexes[size-1]);
-                size--;
+                tabmodel.removeRow(id);
+                pst.close();
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
             }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        UserFrame ob =new UserFrame();
-        UserFrame.TF_user.setText(Books.TF_user.getText());
-        ob.setVisible(true);
-        setVisible(false);
+        String nameOfTable = NameOfTable.getText();
+
+        if(null != nameOfTable)
+            switch (nameOfTable) {
+            case "KSIAZKI":
+                Books cb =new Books();
+                Books.TF_user.setText(this.TF_id.getText());
+                cb.setVisible(true);
+                setVisible(false);
+                break;       
+            case "KLIENCI":
+                AdminFrame kl =new AdminFrame();
+                AdminFrame.TF_id.setText(RemoveFromTable.TF_id.getText());
+                kl.setVisible(true);
+                setVisible(false);
+                break; 
+            case "PRACOWNICY":
+                AdminFrame kl1 =new AdminFrame();
+                AdminFrame.TF_id.setText(RemoveFromTable.TF_id.getText());
+                kl1.setVisible(true);
+                setVisible(false);
+                break;
+            case "UZYTKOWNICY_BAZY":
+                DatabaseUsers ub = new DatabaseUsers();
+                DatabaseUsers.TF_id.setText(this.TF_id.getText());
+                ub.setVisible(true);
+                setVisible(false);
+                break;
+            default:
+                break;
+        }
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     
@@ -274,6 +320,7 @@ public class RemoveFromTable extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NameOfIDRow;
     private javax.swing.JTextField NameOfTable;
+    public static javax.swing.JLabel TF_id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;

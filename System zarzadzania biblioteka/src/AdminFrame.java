@@ -51,9 +51,7 @@ public class AdminFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        TF_admin = new javax.swing.JLabel();
+        TF_id = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -144,11 +142,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/function_procedures.png"))); // NOI18N
-
-        jLabel11.setText("Funkcje i procedury");
-
-        TF_admin.setText("ID");
+        TF_id.setText("ID");
 
         jLabel12.setText("Twoje ID:");
 
@@ -156,18 +150,19 @@ public class AdminFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
+                                .addGap(9, 9, 9)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
+                                .addGap(29, 29, 29)
                                 .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
+                                .addGap(9, 9, 9)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton3)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -175,14 +170,13 @@ public class AdminFrame extends javax.swing.JFrame {
                                         .addGap(36, 36, 36)))))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jLabel5)
-                                    .addGap(91, 91, 91))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addGap(38, 38, 38)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel5)
+                                .addGap(91, 91, 91))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton6)
@@ -197,7 +191,7 @@ public class AdminFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel8))
                             .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton8)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(10, 10, 10)
                                     .addComponent(jLabel9))))
@@ -208,33 +202,25 @@ public class AdminFrame extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel3))
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel11))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(187, 187, 187)
+                        .addGap(79, 79, 79)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TF_admin)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(TF_id)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TF_admin)
-                        .addComponent(jLabel12))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addComponent(TF_id)
+                        .addComponent(jLabel12)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -272,13 +258,8 @@ public class AdminFrame extends javax.swing.JFrame {
                                 .addGap(2, 2, 2)
                                 .addComponent(jButton8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jButton10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11)))
-                .addGap(46, 46, 46))
+                                .addComponent(jLabel9)))))
+                .addGap(38, 38, 38))
         );
 
         jMenu1.setText("Plik");
@@ -324,8 +305,8 @@ public class AdminFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,7 +336,7 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         NewClient ob = new NewClient();
-        NewClient.TF_admin.setText(AdminFrame.TF_admin.getText());
+        NewClient.TF_admin.setText(AdminFrame.TF_id.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -363,7 +344,7 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         NewWorker ob = new NewWorker();
-        NewWorker.TF_admin.setText(AdminFrame.TF_admin.getText());
+        NewWorker.TF_admin.setText(AdminFrame.TF_id.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -377,7 +358,7 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         DatabaseUsers ob = new DatabaseUsers();
-        DatabaseUsers.TF_admin.setText(AdminFrame.TF_admin.getText());
+        DatabaseUsers.TF_id.setText(AdminFrame.TF_id.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -386,6 +367,7 @@ public class AdminFrame extends javax.swing.JFrame {
         PrintTable ob = null;
         try {
             ob = new PrintTable("KLIENCI");
+            ob.TF_id.setText(AdminFrame.TF_id.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -397,6 +379,7 @@ public class AdminFrame extends javax.swing.JFrame {
         PrintTable ob = null;
         try {
             ob = new PrintTable("PRACOWNICY");
+            ob.TF_id.setText(AdminFrame.TF_id.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -408,6 +391,7 @@ public class AdminFrame extends javax.swing.JFrame {
         PrintTable ob = null;
         try {
             ob = new PrintTable("SCHEMA_HISTORY");
+            ob.TF_id.setText(AdminFrame.TF_id.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -418,7 +402,8 @@ public class AdminFrame extends javax.swing.JFrame {
         setVisible(false);
         RemoveFromTable ob = null;
         try {
-            ob = new RemoveFromTable("PRACOWNICY");
+            ob = new RemoveFromTable("KLIENCI");
+            ob.TF_id.setText(AdminFrame.TF_id.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -429,7 +414,7 @@ public class AdminFrame extends javax.swing.JFrame {
         setVisible(false);
         RemoveFromTable ob = null;
         try {
-            ob = new RemoveFromTable("KLIENCI");
+            ob = new RemoveFromTable("PRACOWNICY");
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -473,9 +458,8 @@ public class AdminFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel TF_admin;
+    public static javax.swing.JLabel TF_id;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -484,7 +468,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

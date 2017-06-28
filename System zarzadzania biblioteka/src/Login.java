@@ -250,7 +250,7 @@ ResultSetMetaData rsmd;
                 if(res.next()){
                     setVisible(false);
                     LoadingUser ob = new LoadingUser();
-                    LoadingUser.TF_value.setText(this.id_user);
+                    LoadingUser.TF_id.setText(this.id_user);
                     ob.setUpLoading();
                     ob.setVisible(true);
                 } 
@@ -261,7 +261,7 @@ ResultSetMetaData rsmd;
                 if(res.next()){
                     setVisible(false);
                     LoadingAdmin ob = new LoadingAdmin();
-                    LoadingAdmin.TF_admin.setText(this.id_user);
+                    LoadingAdmin.TF_id.setText(this.id_user);
                     ob.setUpLoading();
                     ob.setVisible(true);
                 } 

@@ -158,9 +158,7 @@ public class UserFrame extends javax.swing.JFrame {
                             .addComponent(jLabel3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel5)
@@ -327,7 +325,7 @@ public class UserFrame extends javax.swing.JFrame {
         setVisible(false);
         try {
             PrintTable ob = new PrintTable("AUTOR");
-            PrintTable.TF_user.setText(this.TF_user.getText());
+            PrintTable.TF_id.setText(this.TF_user.getText());
             ob.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -339,7 +337,7 @@ public class UserFrame extends javax.swing.JFrame {
         setVisible(false);
         try {
             PrintTable ob = new PrintTable("KLIENCI");
-            PrintTable.TF_user.setText(this.TF_user.getText());
+            PrintTable.TF_id.setText(this.TF_user.getText());
             ob.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -350,7 +348,7 @@ public class UserFrame extends javax.swing.JFrame {
         setVisible(false);
         try {
             PrintTable ob = new PrintTable("WYPOZYCZENIA_ARCHIWUM");
-            PrintTable.TF_user.setText(this.TF_user.getText());
+            PrintTable.TF_id.setText(this.TF_user.getText());
             ob.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);

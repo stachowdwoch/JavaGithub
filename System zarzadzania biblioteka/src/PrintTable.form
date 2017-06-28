@@ -140,7 +140,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="tableNameField" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="TF_user" min="-2" max="-2" attributes="0"/>
+              <Component id="TF_id" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -154,7 +154,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="tableNameField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TF_user" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TF_id" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButton4" min="-2" max="-2" attributes="0"/>
@@ -200,7 +200,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tableNameField">
     </Component>
-    <Component class="javax.swing.JLabel" name="TF_user">
+    <Component class="javax.swing.JLabel" name="TF_id">
       <Properties>
         <Property name="text" type="java.lang.String" value="ID"/>
       </Properties>

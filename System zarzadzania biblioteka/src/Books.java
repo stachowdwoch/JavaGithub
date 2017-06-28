@@ -124,6 +124,11 @@ public class Books extends javax.swing.JFrame{
         TF_user.setText("ID");
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reading-book-literature-issue-128.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Wyświetl książki");
@@ -337,11 +342,23 @@ public class Books extends javax.swing.JFrame{
         RemoveFromTable ob = null;
         try {
             ob = new RemoveFromTable("KSIAZKI");
+            RemoveFromTable.TF_id.setText(Books.TF_user.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         ob.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        setVisible(false);
+        try {
+            PrintTable ob = new PrintTable("KSIAZKI");
+            PrintTable.TF_id.setText(this.TF_user.getText());
+            ob.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

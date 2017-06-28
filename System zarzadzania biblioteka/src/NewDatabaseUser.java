@@ -214,7 +214,7 @@ public class NewDatabaseUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         DatabaseUsers ob = new DatabaseUsers();
-        DatabaseUsers.TF_admin.setText(this.TF_admin.getText());
+        DatabaseUsers.TF_id.setText(this.TF_admin.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -245,7 +245,7 @@ public class NewDatabaseUser extends javax.swing.JFrame {
                     try{
                         setVisible(false);
                         AdminFrame ob = new AdminFrame();
-                        AdminFrame.TF_admin.setText(this.TF_admin.getText());
+                        AdminFrame.TF_id.setText(this.TF_admin.getText());
                         ob.setVisible(true);
                     }catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e);

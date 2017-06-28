@@ -22,7 +22,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
     public DatabaseUsers() {
         super("Database Users");
         initComponents();
-        TF_admin.setVisible(false);
+        //TF_id.setVisible(false);
     }
 
     /**
@@ -42,7 +42,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        TF_admin = new javax.swing.JLabel();
+        TF_id = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -78,6 +78,11 @@ public class DatabaseUsers extends javax.swing.JFrame {
         });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/worker_delete.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Wyświetl użytkowników");
@@ -89,7 +94,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
             }
         });
 
-        TF_admin.setText("ID");
+        TF_id.setText("ID");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,7 +104,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TF_admin)
+                .addComponent(TF_id)
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(121, 121, 121)
@@ -124,7 +129,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TF_admin))
+                        .addComponent(TF_id))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(120, 120, 120)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +226,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         AdminFrame ob = new AdminFrame();
-        AdminFrame.TF_admin.setText(DatabaseUsers.TF_admin.getText());
+        AdminFrame.TF_id.setText(DatabaseUsers.TF_id.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -229,22 +234,35 @@ public class DatabaseUsers extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
         NewDatabaseUser ob = new NewDatabaseUser();
-        NewDatabaseUser.TF_admin.setText(DatabaseUsers.TF_admin.getText());
+        NewDatabaseUser.TF_admin.setText(DatabaseUsers.TF_id.getText());
         ob.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         setVisible(false);
-        PrintTable ob = null;
+        PrintTable ob = null; 
         try {
-            String sql = "SELECT ub.id_pracownik, ub.login, pr.imie_pracownik, pr.nazwisko_pracownik, pr.stanowisko FROM UZYTKOWNICY_BAZY ub, PRACOWNICY pr\n" +
-                        "WHERE ub.id_pracownik = pr.id_pracownik";
+            String sql = "UZYTKOWNICY_BAZY";
             ob = new PrintTable(sql);
+            ob.TF_id.setText(DatabaseUsers.TF_id.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         ob.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        RemoveFromTable ob = null;
+        try {
+            ob = new RemoveFromTable("UZYTKOWNICY_BAZY");
+            RemoveFromTable.TF_id.setText(DatabaseUsers.TF_id.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ob.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,7 +298,7 @@ public class DatabaseUsers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel TF_admin;
+    public static javax.swing.JLabel TF_id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

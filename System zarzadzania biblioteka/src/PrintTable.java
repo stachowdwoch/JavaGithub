@@ -18,8 +18,8 @@ import net.proteanit.sql.DbUtils;
  */
 public class PrintTable extends javax.swing.JFrame {
     Connection conn;
-    ResultSet res;
-    PreparedStatement pst;
+    ResultSet res, res_k;
+    PreparedStatement pst, pst_k;
     
     /**
      * Creates new form PrintTable
@@ -31,7 +31,7 @@ public class PrintTable extends javax.swing.JFrame {
         initComponents();
         tableNameField.setVisible(false);
         tableNameField.setText(tableName);
-        TF_user.setVisible(false);
+        TF_id.setVisible(false);
         conn = DatabaseConnection.connectDB();
         updateTable(tableName);
     }
@@ -41,7 +41,12 @@ public class PrintTable extends javax.swing.JFrame {
     }
     
     private void updateTable(String tableName) throws SQLException{
-        String sql = "SELECT * FROM " + tableName;
+        String sql;
+        if(tableName == "UZYTKOWNICY_BAZY"){
+        sql = "SELECT ub.id_pracownik, ub.login, pr.imie_pracownik, pr.nazwisko_pracownik, pr.stanowisko FROM UZYTKOWNICY_BAZY ub, PRACOWNICY pr\n" +
+                        "WHERE ub.id_pracownik = pr.id_pracownik";
+        }else
+            sql = "SELECT * FROM " + tableName;
         try{
             pst = conn.prepareStatement(sql);
             res = pst.executeQuery();
@@ -71,7 +76,7 @@ public class PrintTable extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         tableNameField = new javax.swing.JTextField();
-        TF_user = new javax.swing.JLabel();
+        TF_id = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -115,7 +120,6 @@ public class PrintTable extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -139,7 +143,7 @@ public class PrintTable extends javax.swing.JFrame {
             }
         });
 
-        TF_user.setText("ID");
+        TF_id.setText("ID");
 
         jMenu3.setText("Plik");
 
@@ -189,7 +193,7 @@ public class PrintTable extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tableNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(TF_user)
+                .addComponent(TF_id)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -201,7 +205,7 @@ public class PrintTable extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tableNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(TF_user))
+                        .addComponent(TF_id))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addContainerGap())))
@@ -254,20 +258,74 @@ public class PrintTable extends javax.swing.JFrame {
         if(null != nameOfTable)
             switch (nameOfTable) {
             case "KSIAZKI":
-                Books cb =new Books();
-                Books.TF_user.setText(this.TF_user.getText());
+                Books cb = new Books();
+                Books.TF_user.setText(this.TF_id.getText());
                 cb.setVisible(true);
                 setVisible(false);
                 break;
             case "AUTOR":
-                UserFrame ob =new UserFrame();
-                UserFrame.TF_user.setText(this.TF_user.getText());
+                UserFrame ob = new UserFrame();
+                UserFrame.TF_user.setText(this.TF_id.getText());
                 ob.setVisible(true);
                 setVisible(false);
                 break;
             case "WYPOZYCZENIA":
+                Borrows wb = new Borrows();
+                Borrows.TF_user.setText(this.TF_id.getText());
+                wb.setVisible(true);
+                setVisible(false);
                 break;
-            case "dokończyć":
+            case "WYPOZYCZENIA_ARCHIWUM":
+                UserFrame ab = new UserFrame();
+                UserFrame.TF_user.setText(this.TF_id.getText());
+                ab.setVisible(true);
+                setVisible(false);
+                break;
+            case "KLIENCI":
+                String id = this.TF_id.getText();
+                String sql_k = "SELECT * FROM pracownicy WHERE id_pracownik ="+id;
+                try{
+                    pst_k = conn.prepareStatement(sql_k);
+                    
+                    res_k = pst_k.executeQuery();
+                    if(res.next()){
+                        String stanowisko = res.getString("stanowisko");
+                        System.out.println(stanowisko);
+                        if("administrator".equals(stanowisko)){
+                            AdminFrame kb = new AdminFrame();
+                            AdminFrame.TF_id.setText(this.TF_id.getText());
+                            kb.setVisible(true);
+                            setVisible(false);
+                        }else{
+                            UserFrame kb = new UserFrame();
+                            UserFrame.TF_user.setText(this.TF_id.getText());
+                            kb.setVisible(true);
+                            setVisible(false);
+                        }
+                        
+                    }
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                
+                break;
+            case "SCHEMA_HISTORY":
+                AdminFrame hb = new AdminFrame();
+                AdminFrame.TF_id.setText(this.TF_id.getText());
+                hb.setVisible(true);
+                setVisible(false);
+                break;
+            case "UZYTKOWNICY_BAZY":
+                DatabaseUsers ub = new DatabaseUsers();
+                DatabaseUsers.TF_id.setText(this.TF_id.getText());
+                ub.setVisible(true);
+                setVisible(false);
+                break;
+            case "PRACOWNICY":
+                AdminFrame pb = new AdminFrame();
+                AdminFrame.TF_id.setText(this.TF_id.getText());
+                pb.setVisible(true);
+                setVisible(false);
                 break;
             default:
                 break;
@@ -308,7 +366,7 @@ public class PrintTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel TF_user;
+    public static javax.swing.JLabel TF_id;
     private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
